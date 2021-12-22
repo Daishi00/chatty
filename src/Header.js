@@ -3,7 +3,6 @@ import { View, Text, StyleSheet } from "react-native";
 import Search from "../assets/search.svg";
 import Rooms from "../assets/rooms.svg";
 export const Header = (props) => {
-  console.log(props.children);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{props.children}</Text>

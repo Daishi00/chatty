@@ -27,15 +27,6 @@ import { setContext } from "@apollo/client/link/context";
 
 const Stack = createStackNavigator();
 
-function LogoTitle() {
-  return (
-    <View>
-      <Text>Rooms</Text>
-      <Profile width={70} height={70} />
-    </View>
-  );
-}
-
 export const Routes = () => {
   const [fontsLoaded, setFontsLoaded] = useState(false);
   const [tokenUser, setToken] = useState("");

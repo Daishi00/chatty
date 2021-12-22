@@ -20,7 +20,11 @@ export const Rooms = ({ navigation }) => {
           <TouchableOpacity
             style={styles.container}
             key={id}
-            onPress={() => navigation.navigate("Chat", {})}
+            onPress={() =>
+              navigation.navigate("Chat", {
+                id: id,
+              })
+            }
           >
             <Profile width={70} height={70} />
             <Text style={styles.timeAgo}>24 m ago</Text>
