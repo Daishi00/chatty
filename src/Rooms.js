@@ -4,6 +4,7 @@ import { Center } from "./Center";
 import { useQuery } from "@apollo/client";
 import Profile from "../assets/profile.svg";
 import { GET_ROOMS_QUERY } from "./graphql/Queries";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export const Rooms = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_ROOMS_QUERY);
@@ -16,14 +17,17 @@ export const Rooms = ({ navigation }) => {
       {rooms.map((room) => {
         const { name, id } = room;
         return (
-          <View style={styles.container} key={id} style={styles.container}>
+          <TouchableOpacity
+            style={styles.container}
+            key={id}
+            onPress={() => navigation.navigate("Chat", {})}
+          >
             <Profile width={70} height={70} />
             <Text style={styles.timeAgo}>24 m ago</Text>
             <Text style={styles.name}>{name}</Text>
-          </View>
+          </TouchableOpacity>
         );
       })}
-      {/* <Button title="Chat" onPress={() => navigation.navigate("Chat")}></Button> */}
     </Center>
   );
 };

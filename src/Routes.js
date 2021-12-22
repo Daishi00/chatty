@@ -95,7 +95,11 @@ export const Routes = () => {
               component={Rooms}
               options={{ headerTitle: (props) => <Header {...props} /> }}
             />
-            <Stack.Screen name="Chat" component={Chat} />
+            <Stack.Screen
+              name="Chat"
+              component={Chat}
+              options={{ headerTitle: (props) => <Header {...props} /> }}
+            />
           </Stack.Navigator>
         ) : (
           <AppLoading
