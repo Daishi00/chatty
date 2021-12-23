@@ -1,20 +1,14 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { useQuery } from "@apollo/client";
 import { GiftedChat } from "react-native-gifted-chat";
-import { GET_CHAT_MESSAGES } from "./graphql/Queries";
-import { StyleSheet } from "react-native";
 import { customToolbar, customFooter, customMessageText } from "./CustomChat";
 
 export const Chat = ({ route }) => {
   const [messages, setMessages] = useState([]);
-  const [idRoom, setIdRoom] = useState(route.params.id);
-  const { loading, error, data } = useQuery(GET_CHAT_MESSAGES, {
-    variables: { id: idRoom },
-  });
 
   useEffect(() => {
-    if (!loading) setData(data);
-  }, [loading]);
+    const data = route.params.data;
+    setData(data);
+  }, []);
 
   const setData = (data) => {
     const { messages } = data.room;
@@ -28,15 +22,11 @@ export const Chat = ({ route }) => {
       }))
     );
   };
-
   const onSend = useCallback((messages = []) => {
     setMessages((previousMessages) =>
       GiftedChat.append(previousMessages, messages)
     );
   }, []);
-
-  if (loading) return null;
-  if (error) return `Error! ${error}`;
 
   return (
     <GiftedChat
