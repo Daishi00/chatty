@@ -5,8 +5,6 @@ import Rooms from "../assets/rooms.svg";
 import Video from "../assets/videocall.svg";
 import Phone from "../assets/phone.svg";
 export const Header = (props) => {
-  console.log(props);
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{props.children}</Text>

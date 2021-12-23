@@ -19,6 +19,7 @@ const getFonts = () =>
   Font.loadAsync({
     "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
     "Poppins-Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins-SemiBold": require("../assets/fonts/Poppins-SemiBold.ttf"),
   });
 
 import { setContext } from "@apollo/client/link/context";
@@ -80,7 +81,7 @@ export const Routes = () => {
             }}
           >
             <Stack.Screen
-              name="RoomsList"
+              name="Rooms"
               component={RoomsList}
               options={{ headerTitle: (props) => <Header {...props} /> }}
             />
