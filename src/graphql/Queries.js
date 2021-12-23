@@ -24,7 +24,7 @@ export const GET_CHAT_MESSAGES = gql`
       messages {
         body
         user {
-          id
+          firstName
         }
       }
       name

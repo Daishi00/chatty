@@ -5,10 +5,8 @@ import AsyncStorageLib from "@react-native-async-storage/async-storage";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Header } from "./Header";
-import Profile from "../assets/profile.svg";
-import { View, Text } from "react-native";
 import { API_TOKEN } from "@env";
-import { Rooms } from "./Rooms";
+import { RoomsList } from "./RoomsList.js";
 import { Chat } from "./Chat";
 import {
   ApolloClient,
@@ -82,8 +80,8 @@ export const Routes = () => {
             }}
           >
             <Stack.Screen
-              name="Rooms"
-              component={Rooms}
+              name="RoomsList"
+              component={RoomsList}
               options={{ headerTitle: (props) => <Header {...props} /> }}
             />
             <Stack.Screen
