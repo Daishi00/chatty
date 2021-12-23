@@ -1,18 +1,18 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native"
 import {
   InputToolbar,
   Send,
   Composer,
   MessageText,
-} from "react-native-gifted-chat";
-import SendIcon from "../assets/send.svg";
+} from "react-native-gifted-chat"
+import SendIcon from "../assets/images/send.svg"
 
 function customSend(props) {
   return (
     <Send {...props}>
       <SendIcon width={50} height={50} />
     </Send>
-  );
+  )
 }
 
 function customComposer(props) {
@@ -20,7 +20,7 @@ function customComposer(props) {
     <View style={styles.inputContainer}>
       <Composer {...props} placeholder=""></Composer>
     </View>
-  );
+  )
 }
 
 export function customToolbar(props) {
@@ -28,14 +28,14 @@ export function customToolbar(props) {
     <InputToolbar
       containerStyle={styles.toolbar}
       {...props}
-      renderSend={(props) => customSend(props)}
-      renderComposer={(props) => customComposer(props)}
+      renderSend={props => customSend(props)}
+      renderComposer={props => customComposer(props)}
     />
-  );
+  )
 }
 
 export function customFooter(props) {
-  return <View style={{ height: 50 }} {...props}></View>;
+  return <View style={{ height: 50 }} {...props}></View>
 }
 
 export function customMessageText(props) {
@@ -67,11 +67,12 @@ export function customMessageText(props) {
       textStyle={{
         left: {
           fontFamily: "Poppins-Regular",
+          fontSize: 12,
         },
-        right: { fontFamily: "Poppins-Regular" },
+        right: { fontFamily: "Poppins-Regular", fontSize: 12 },
       }}
     ></MessageText>
-  );
+  )
 }
 const styles = StyleSheet.create({
   toolbar: {
@@ -93,4 +94,4 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginRight: 10,
   },
-});
+})

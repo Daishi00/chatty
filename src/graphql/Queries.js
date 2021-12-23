@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from "@apollo/client"
 
 export const GET_ROOMS_QUERY = gql`
   query UserRooms {
@@ -16,7 +16,7 @@ export const GET_ROOMS_QUERY = gql`
       }
     }
   }
-`;
+`
 
 export const GET_CHAT_MESSAGES = gql`
   query roomMessage($id: ID!) {
@@ -36,4 +36,4 @@ export const GET_CHAT_MESSAGES = gql`
       }
     }
   }
-`;
+`

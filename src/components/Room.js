@@ -1,36 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { Text, StyleSheet, View } from "react-native";
-import Profile from "../assets/profile.svg";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { useQuery } from "@apollo/client";
-import { GET_CHAT_MESSAGES } from "./graphql/Queries";
+import React, { useEffect, useState } from "react"
+import { Text, StyleSheet, View } from "react-native"
+import Profile from "../assets/images/profile.svg"
+import { TouchableOpacity } from "react-native-gesture-handler"
+import { useQuery } from "@apollo/client"
+import { GET_CHAT_MESSAGES } from "../graphql/Queries"
 
 export const Room = ({ name, id, navigation }) => {
-  const [timeAgo, setTimeAgo] = useState("");
+  const [timeAgo, setTimeAgo] = useState("")
 
   const { loading, error, data } = useQuery(GET_CHAT_MESSAGES, {
     variables: { id: id },
     pollInterval: 500,
-  });
+  })
 
   useEffect(() => {
-    if (!loading) diff(data.room.messages[0].insertedAt);
-  });
+    if (!loading) diff(data.room.messages[0].insertedAt)
+  })
 
   function diff(oldDate) {
-    let date = oldDate.split("");
-    date.splice(10, 1, "T");
-    date.splice(date.length, 0, "Z");
-    let dateFormat = date.join("");
-    const date1 = new Date(dateFormat);
-    const date2 = new Date();
+    let date = oldDate.split("")
+    date.splice(10, 1, "T")
+    date.splice(date.length, 0, "Z")
+    let dateFormat = date.join("")
+    const date1 = new Date(dateFormat)
+    const date2 = new Date()
 
-    const diff = (date2.getTime() - date1.getTime()) / 1000;
-    setTimeAgo(Math.abs(Math.round(diff / 60)));
+    const diff = (date2.getTime() - date1.getTime()) / 1000
+
+    setTimeAgo(Math.abs(Math.round(diff / 60)))
   }
 
-  if (loading) return null;
-  if (error) return `Error! ${error}`;
+  if (loading) return null
+  if (error) return `Error! ${error}`
   return (
     <TouchableOpacity
       style={styles.roomContainer}
@@ -52,8 +53,8 @@ export const Room = ({ name, id, navigation }) => {
         </Text>
       </View>
     </TouchableOpacity>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   roomContainer: {
@@ -95,4 +96,4 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     fontFamily: "Poppins-Regular",
   },
-});
+})

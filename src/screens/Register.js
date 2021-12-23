@@ -1,9 +1,9 @@
-import React from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import React from "react"
+import { View, Text, TextInput, StyleSheet } from "react-native"
+import { TouchableOpacity } from "react-native-gesture-handler"
+import { useForm, Controller } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -11,7 +11,7 @@ const schema = yup.object().shape({
   lastName: yup.string().required(),
   password: yup.string().min(5).max(28).required(),
   passwordConfirm: yup.string().oneOf([yup.ref("password"), null]),
-});
+})
 
 export const Register = ({ navigation }) => {
   const {
@@ -19,19 +19,15 @@ export const Register = ({ navigation }) => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(schema) })
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const onSubmit = data => {
+    console.log(data)
+  }
 
   return (
-    <View
-      style={styles.container}
-      behavior="padding"
-      keyboardVerticalOffset={-500}
-    >
-      <View>
+    <View style={styles.container}>
+      <View style={styles.form}>
         <Text style={styles.label}>e-mail address</Text>
         <Controller
           control={control}
@@ -41,7 +37,7 @@ export const Register = ({ navigation }) => {
           render={({ field: { onChange, value } }) => (
             <TextInput
               style={styles.input}
-              onChangeText={(value) => onChange(value)}
+              onChangeText={value => onChange(value)}
               value={value}
               {...register("email")}
             />
@@ -58,7 +54,7 @@ export const Register = ({ navigation }) => {
           render={({ field: { onChange, value } }) => (
             <TextInput
               style={styles.input}
-              onChangeText={(value) => onChange(value)}
+              onChangeText={value => onChange(value)}
               value={value}
               {...register("firstName")}
             />
@@ -76,7 +72,7 @@ export const Register = ({ navigation }) => {
           render={({ field: { onChange, value } }) => (
             <TextInput
               style={styles.input}
-              onChangeText={(value) => onChange(value)}
+              onChangeText={value => onChange(value)}
               value={value}
               {...register("lastName")}
             />
@@ -94,8 +90,9 @@ export const Register = ({ navigation }) => {
           render={({ field: { onChange, value } }) => (
             <TextInput
               style={styles.input}
-              onChangeText={(value) => onChange(value)}
+              onChangeText={value => onChange(value)}
               value={value}
+              secureTextEntry
               {...register("password")}
             />
           )}
@@ -113,8 +110,9 @@ export const Register = ({ navigation }) => {
             <TextInput
               name="email"
               style={styles.input}
-              onChangeText={(value) => onChange(value)}
+              onChangeText={value => onChange(value)}
               value={value}
+              secureTextEntry
               {...register("passwordConfirm")}
             />
           )}
@@ -123,8 +121,8 @@ export const Register = ({ navigation }) => {
         <Text style={styles.error}>{errors.passwordConfirm?.message}</Text>
         <TouchableOpacity
           style={styles.button}
-          // onPress={() => navigation.navigate("Rooms")}
-          onPress={handleSubmit(onSubmit)}
+          onPress={() => navigation.navigate("Rooms")}
+          // onPress={handleSubmit(onSubmit)}
         >
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
@@ -137,19 +135,23 @@ export const Register = ({ navigation }) => {
       </View>
       <View style={styles.alreadyContainer}>
         <Text style={styles.alreadyText}>Already have an account?</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text style={styles.login}>Log In</Text>
         </TouchableOpacity>
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#B6DEFD",
-    padding: 30,
     flex: 1,
+    padding: 15,
+    justifyContent: "space-around",
+  },
+  form: {
+    padding: 15,
   },
   input: {
     backgroundColor: "#fff",
@@ -188,6 +190,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "space-evenly",
     flexDirection: "row",
+    marginBottom: 20,
   },
   alreadyText: {
     fontFamily: "Poppins-Regular",
@@ -204,4 +207,4 @@ const styles = StyleSheet.create({
     color: "#FF445A",
     fontSize: 12,
   },
-});
+})

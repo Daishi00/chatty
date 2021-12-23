@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from "@apollo/client"
 
 export const SEND_MESSAGE = gql`
   mutation sendMessage($body: String!, $roomId: String!) {
@@ -11,4 +11,4 @@ export const SEND_MESSAGE = gql`
       }
     }
   }
-`;
+`

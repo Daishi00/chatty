@@ -1,11 +1,11 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import Search from "../assets/search.svg";
-import Rooms from "../assets/rooms.svg";
-import Video from "../assets/videocall.svg";
-import Phone from "../assets/phone.svg";
-import Profile from "../assets/profile.svg";
-export const Header = (props) => {
+import React from "react"
+import { View, Text, StyleSheet } from "react-native"
+import Search from "../assets/images/search.svg"
+import Rooms from "../assets/images/rooms.svg"
+import Video from "../assets/images/videocall.svg"
+import Phone from "../assets/images/phone.svg"
+import Profile from "../assets/images/profile.svg"
+export const Header = props => {
   return (
     <View style={styles.container}>
       {props.children ? (
@@ -28,8 +28,8 @@ export const Header = (props) => {
         </View>
       )}
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
     color: `#5603AD`,
   },
   avatar: {},
-});
+})
