@@ -27,7 +27,13 @@ export const Room = ({ name, id, navigation }) => {
 
     const diff = (date2.getTime() - date1.getTime()) / 1000
 
-    setTimeAgo(Math.abs(Math.round(diff / 60)))
+    if (diff > 82800) {
+      setTimeAgo(Math.abs(Math.round(diff / 86400)) + "d")
+    } else if (diff > 3540) {
+      setTimeAgo(Math.abs(Math.round(diff / 3600)) + "h")
+    } else {
+      setTimeAgo(Math.abs(Math.round(diff / 60)) + "m")
+    }
   }
 
   if (loading) return null
@@ -43,7 +49,7 @@ export const Room = ({ name, id, navigation }) => {
       }
     >
       <Profile width={70} height={70} />
-      <Text style={styles.timeAgo}>{timeAgo} m ago </Text>
+      <Text style={styles.timeAgo}>{timeAgo} ago </Text>
       <View style={styles.textContainer}>
         <Text numberOfLines={1} style={styles.name}>
           {name}
