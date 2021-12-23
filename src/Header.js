@@ -4,19 +4,27 @@ import Search from "../assets/search.svg";
 import Rooms from "../assets/rooms.svg";
 import Video from "../assets/videocall.svg";
 import Phone from "../assets/phone.svg";
+import Profile from "../assets/profile.svg";
 export const Header = (props) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{props.children}</Text>
+      {props.children ? (
+        <Text style={styles.title}>{props.children}</Text>
+      ) : (
+        <View style={styles.roomTitleContainer}>
+          <Profile height={44} width={44} style={styles.avatar} />
+          <Text style={styles.roomTitle}>{props.params.data.room.name}</Text>
+        </View>
+      )}
       {props.children === "Rooms" ? (
         <View style={styles.buttonContainer}>
-          <Search style={styles.button} />
-          <Rooms style={styles.button} />
+          <Search height={44} width={44} style={styles.button} />
+          <Rooms height={44} width={44} style={styles.button} />
         </View>
       ) : (
         <View style={styles.buttonContainer}>
-          <Video style={styles.button} />
-          <Phone style={styles.button} />
+          <Phone height={44} width={44} style={styles.button} />
+          <Video height={44} width={44} style={styles.button} />
         </View>
       )}
     </View>
@@ -40,8 +48,23 @@ const styles = StyleSheet.create({
 
   buttonContainer: {
     flexDirection: "row",
+    marginLeft: 25,
   },
   button: {
     marginLeft: 8,
   },
+
+  roomTitleContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  roomTitle: {
+    fontFamily: "Poppins-SemiBold",
+    marginLeft: 10,
+    color: `#5603AD`,
+  },
+  avatar: {},
 });

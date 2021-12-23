@@ -15,7 +15,7 @@ export const RoomsList = ({ navigation }) => {
     <View style={styles.container}>
       {rooms.map((room) => {
         const { name, id } = room;
-        return <Room name={name} id={id} navigation={navigation} />;
+        return <Room name={name} id={id} navigation={navigation} key={id} />;
       })}
     </View>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, StyleSheet, View } from "react-native";
 import Profile from "../assets/profile.svg";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -6,11 +6,28 @@ import { useQuery } from "@apollo/client";
 import { GET_CHAT_MESSAGES } from "./graphql/Queries";
 
 export const Room = ({ name, id, navigation }) => {
+  const [timeAgo, setTimeAgo] = useState("");
+
   const { loading, error, data } = useQuery(GET_CHAT_MESSAGES, {
     variables: { id: id },
+    pollInterval: 500,
   });
 
-  console.log(data);
+  useEffect(() => {
+    if (!loading) diff(data.room.messages[0].insertedAt);
+  });
+
+  function diff(oldDate) {
+    let date = oldDate.split("");
+    date.splice(10, 1, "T");
+    date.splice(date.length, 0, "Z");
+    let dateFormat = date.join("");
+    const date1 = new Date(dateFormat);
+    const date2 = new Date();
+
+    const diff = (date2.getTime() - date1.getTime()) / 1000;
+    setTimeAgo(Math.abs(Math.round(diff / 60)));
+  }
 
   if (loading) return null;
   if (error) return `Error! ${error}`;
@@ -25,7 +42,7 @@ export const Room = ({ name, id, navigation }) => {
       }
     >
       <Profile width={70} height={70} />
-      <Text style={styles.timeAgo}>24 m ago</Text>
+      <Text style={styles.timeAgo}>{timeAgo} m ago </Text>
       <View style={styles.textContainer}>
         <Text numberOfLines={1} style={styles.name}>
           {name}

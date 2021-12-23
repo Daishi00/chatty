@@ -10,7 +10,7 @@ import SendIcon from "../assets/send.svg";
 function customSend(props) {
   return (
     <Send {...props}>
-      <SendIcon />
+      <SendIcon width={50} height={50} />
     </Send>
   );
 }
@@ -59,6 +59,8 @@ export function customMessageText(props) {
           borderTopLeftRadius: 15,
           borderTopRightRadius: 15,
           borderBottomLeftRadius: 15,
+          marginBottom: 12,
+          marginRight: 24,
           width: 245,
         },
       }}
@@ -78,6 +80,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     justifyContent: "center",
+    borderTopWidth: 0,
   },
   inputContainer: {
     backgroundColor: "#fff",

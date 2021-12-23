@@ -8,6 +8,8 @@ import { Header } from "./Header";
 import { API_TOKEN } from "@env";
 import { RoomsList } from "./RoomsList.js";
 import { Chat } from "./Chat";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import Back from "../assets/back.svg";
 import {
   ApolloClient,
   InMemoryCache,
@@ -88,7 +90,21 @@ export const Routes = () => {
             <Stack.Screen
               name="Chat"
               component={Chat}
-              options={{ headerTitle: (props) => <Header {...props} /> }}
+              options={({ navigation, route }) => ({
+                headerTitle: () => <Header {...route} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("Rooms")}
+                  >
+                    <Back
+                      color="#fff"
+                      width={22}
+                      height={22}
+                      style={{ marginLeft: 15, marginTop: 15, marginRight: 15 }}
+                    />
+                  </TouchableOpacity>
+                ),
+              })}
             />
           </Stack.Navigator>
         ) : (

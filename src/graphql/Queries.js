@@ -23,12 +23,17 @@ export const GET_CHAT_MESSAGES = gql`
     room(id: $id) {
       messages {
         body
+        insertedAt
         user {
           firstName
+          id
         }
       }
       name
       id
+      user {
+        firstName
+      }
     }
   }
 `;
