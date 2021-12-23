@@ -1,6 +1,5 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
-import { Center } from "./Center";
 import { useQuery } from "@apollo/client";
 import Profile from "../assets/profile.svg";
 import { GET_ROOMS_QUERY } from "./graphql/Queries";
@@ -13,7 +12,7 @@ export const Rooms = ({ navigation }) => {
 
   const rooms = data.usersRooms.rooms;
   return (
-    <Center>
+    <>
       {rooms.map((room) => {
         const { name, id } = room;
         return (
@@ -32,7 +31,7 @@ export const Rooms = ({ navigation }) => {
           </TouchableOpacity>
         );
       })}
-    </Center>
+    </>
   );
 };
 
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     padding: 20,
-    marginBottom: 15,
+    marginTop: 15,
     borderRadius: 20,
   },
   image: {
