@@ -6,6 +6,7 @@ import {
   MessageText,
 } from "react-native-gifted-chat"
 import SendIcon from "../assets/images/send.svg"
+import React, { useState } from "react"
 
 function customSend(props) {
   return (

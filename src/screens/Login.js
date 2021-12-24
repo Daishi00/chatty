@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { View, Text, TextInput, StyleSheet } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { useForm, Controller } from "react-hook-form"
@@ -16,7 +16,6 @@ export const Login = ({ navigation }) => {
   const {
     register,
     control,
-    handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) })
 

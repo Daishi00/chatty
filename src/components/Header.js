@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import Search from "../assets/images/search.svg"
 import Rooms from "../assets/images/rooms.svg"
 import Video from "../assets/images/videocall.svg"
@@ -18,13 +18,21 @@ export const Header = props => {
       )}
       {props.children === "Rooms" ? (
         <View style={styles.buttonContainer}>
-          <Search height={44} width={44} style={styles.button} />
-          <Rooms height={44} width={44} style={styles.button} />
+          <TouchableOpacity>
+            <Search height={44} width={44} style={styles.button} />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Rooms height={44} width={44} style={styles.button} />
+          </TouchableOpacity>
         </View>
       ) : (
         <View style={styles.buttonContainer}>
-          <Phone height={44} width={44} style={styles.button} />
-          <Video height={44} width={44} style={styles.button} />
+          <TouchableOpacity>
+            <Phone height={44} width={44} style={styles.button} />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Video height={44} width={44} style={styles.button} />
+          </TouchableOpacity>
         </View>
       )}
     </View>

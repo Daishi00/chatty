@@ -2,7 +2,7 @@ import React from "react"
 import { Text, View, StyleSheet } from "react-native"
 import { useQuery } from "@apollo/client"
 import { GET_ROOMS_QUERY } from "../graphql/Queries"
-
+import AsyncStorageLib from "@react-native-async-storage/async-storage"
 import { Room } from "../components/Room"
 import { Loading } from "../components/Loading"
 

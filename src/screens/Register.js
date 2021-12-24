@@ -1,10 +1,13 @@
 import React from "react"
 import { View, Text, TextInput, StyleSheet, Linking } from "react-native"
-import { TouchableOpacity } from "react-native-gesture-handler"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Button } from "../components/Button"
 import { AuthSwitch } from "../components/AuthSwitch"
+import { REGISTER_USER } from "../graphql/Mutations"
+import { useMutation } from "@apollo/client"
+import { Loading } from "../components/Loading"
+import AsyncStorageLib from "@react-native-async-storage/async-storage"
 
 import * as yup from "yup"
 
@@ -12,11 +15,21 @@ const schema = yup.object().shape({
   email: yup.string().email().required(),
   firstName: yup.string().required(),
   lastName: yup.string().required(),
-  password: yup.string().min(5).max(28).required(),
+  password: yup.string().min(8).max(28).required(),
   passwordConfirm: yup.string().oneOf([yup.ref("password"), null]),
 })
 
 export const Register = ({ navigation }) => {
+  const [registerUser, { data, loading, error }] = useMutation(REGISTER_USER, {
+    onCompleted() {
+      AsyncStorageLib.setItem("id", data.id)
+      navigation.navigate("Rooms")
+    },
+    onError(error) {
+      console.log(error.message)
+    },
+  })
+
   const {
     register,
     control,
@@ -25,8 +38,25 @@ export const Register = ({ navigation }) => {
   } = useForm({ resolver: yupResolver(schema) })
 
   const onSubmit = data => {
-    console.log(data)
+    console.log(data.email)
+    console.log(data.firstName)
+    console.log(data.lastName)
+    console.log(data.password)
+    console.log(data.passwordConfirm)
+
+    registerUser({
+      variables: {
+        email: data.email,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        password: data.password,
+        passwordConfirmation: data.passwordConfirm,
+      },
+    })
   }
+
+  if (loading) return <Text>Submitting..</Text>
+  if (error) return <Text>`Submission error! ${error.message}`</Text>
 
   return (
     <View style={styles.container}>
@@ -122,7 +152,7 @@ export const Register = ({ navigation }) => {
           name="passwordConfirm"
         />
         <Text style={styles.error}>{errors.passwordConfirm?.message}</Text>
-        <Button onPress={() => navigation.navigate("Rooms")}>Sign up</Button>
+        <Button onPress={handleSubmit(onSubmit)}>Sign up</Button>
       </View>
       <View style={styles.termsContainer}>
         <Text style={styles.termsText}>
