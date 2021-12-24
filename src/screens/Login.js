@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { View, Text, TextInput, StyleSheet } from "react-native"
-import { TouchableOpacity } from "react-native-gesture-handler"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Button } from "../components/Button"

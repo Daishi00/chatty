@@ -6,7 +6,7 @@ import {
   MessageText,
 } from "react-native-gifted-chat"
 import SendIcon from "../assets/images/send.svg"
-import React, { useState } from "react"
+import React from "react"
 
 function customSend(props) {
   return (
@@ -81,18 +81,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#B6DEFD",
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-    justifyContent: "center",
     borderTopWidth: 0,
+    paddingBottom: 30,
   },
   inputContainer: {
     backgroundColor: "#fff",
+    padding: 8,
     width: "75%",
     height: 50,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     borderBottomLeftRadius: 15,
     marginLeft: 20,
-    marginBottom: 30,
     marginRight: 10,
+    marginBottom: 30,
   },
 })

@@ -42,7 +42,6 @@ export const Header = props => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -56,7 +55,6 @@ const styles = StyleSheet.create({
 
   buttonContainer: {
     flexDirection: "row",
-    marginLeft: 25,
   },
   button: {
     marginLeft: 8,
@@ -67,12 +65,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    paddingRight: 20,
   },
 
   roomTitle: {
     fontFamily: "Poppins-SemiBold",
     marginLeft: 10,
     color: `#5603AD`,
+    fontSize: 14,
+    textAlign: "center",
   },
-  avatar: {},
 })

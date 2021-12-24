@@ -8,9 +8,9 @@
       "config": "metro.config.js",
       "sourceExts": ["js", "jsx", "ts", "tsx", "svg"]
     },
-    "icon": "./assets/icon.png",
+    "icon": "",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,12 +23,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": ""
     }
   }
 }

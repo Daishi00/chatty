@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import AsyncStorageLib from "@react-native-async-storage/async-storage"
-import { ActivityIndicator } from "react-native"
 import * as Font from "expo-font"
 import AppLoading from "expo-app-loading"
 import { API_TOKEN } from "@env"
@@ -35,7 +34,7 @@ export const Routes = () => {
   const [fontsLoaded, setFontsLoaded] = useState(false)
   const [tokenUser, setToken] = useState("")
 
-  //Refactor later
+  // for now provide token to .env file
 
   storeData = () => {
     AsyncStorageLib.setItem("token", API_TOKEN)
@@ -124,7 +123,7 @@ export const Routes = () => {
               component={RoomsList}
               options={{
                 headerTitle: props => <Header {...props} />,
-                // headerLeft: null,
+                headerLeft: null,
               }}
             />
             <Stack.Screen

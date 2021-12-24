@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { View, Text, TextInput, StyleSheet, Linking } from "react-native"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -7,8 +7,6 @@ import { AuthSwitch } from "../components/AuthSwitch"
 import { REGISTER_USER } from "../graphql/Mutations"
 import { useMutation } from "@apollo/client"
 import { Loading } from "../components/Loading"
-import AsyncStorageLib from "@react-native-async-storage/async-storage"
-
 import * as yup from "yup"
 
 const schema = yup.object().shape({
@@ -22,7 +20,6 @@ const schema = yup.object().shape({
 export const Register = ({ navigation }) => {
   const [registerUser, { data, loading, error }] = useMutation(REGISTER_USER, {
     onCompleted() {
-      AsyncStorageLib.setItem("id", data.id)
       navigation.navigate("Rooms")
     },
     onError(error) {
@@ -38,12 +35,6 @@ export const Register = ({ navigation }) => {
   } = useForm({ resolver: yupResolver(schema) })
 
   const onSubmit = data => {
-    console.log(data.email)
-    console.log(data.firstName)
-    console.log(data.lastName)
-    console.log(data.password)
-    console.log(data.passwordConfirm)
-
     registerUser({
       variables: {
         email: data.email,
@@ -55,7 +46,7 @@ export const Register = ({ navigation }) => {
     })
   }
 
-  if (loading) return <Text>Submitting..</Text>
+  if (loading) return <Loading />
   if (error) return <Text>`Submission error! ${error.message}`</Text>
 
   return (

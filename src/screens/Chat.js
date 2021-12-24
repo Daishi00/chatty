@@ -67,6 +67,7 @@ export const Chat = ({ route }) => {
       renderInputToolbar={props => customToolbar(props)}
       alwaysShowSend={true}
       renderDay={() => null}
+      bottomOffset={-40}
       user={{
         _id: myId,
       }}
