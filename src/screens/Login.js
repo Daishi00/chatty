@@ -3,6 +3,8 @@ import { View, Text, TextInput, StyleSheet } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { Button } from "../components/Button"
+import { AuthSwitch } from "../components/AuthSwitch"
 import * as yup from "yup"
 
 const schema = yup.object().shape({
@@ -64,21 +66,13 @@ export const Login = ({ navigation }) => {
         />
         <Text style={styles.error}>{errors.password?.message}</Text>
       </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Rooms")}
-          // onPress={handleSubmit(onSubmit)}
-        >
-          <Text style={styles.buttonText}>Log In</Text>
-        </TouchableOpacity>
-
-        <View style={styles.alreadyContainer}>
-          <Text style={styles.alreadyText}>Dont have an account?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-            <Text style={styles.login}>Sign up</Text>
-          </TouchableOpacity>
-        </View>
+      <View>
+        <Button onPress={() => navigation.navigate("Rooms")}>Log in</Button>
+        <AuthSwitch
+          text="Dont have an account?"
+          buttonText="Sign up"
+          onPress={() => navigation.navigate("Register")}
+        />
       </View>
     </View>
   )
@@ -108,37 +102,6 @@ const styles = StyleSheet.create({
   label: {
     color: "#fff",
     fontFamily: "Poppins-Regular",
-  },
-  button: {
-    width: "100%",
-    height: 50,
-    marginTop: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#5603AD",
-    borderRadius: 10,
-  },
-  buttonContainer: {
-    marginBottom: 20,
-  },
-  buttonText: {
-    fontFamily: "Poppins-SemiBold",
-    color: "#fff",
-  },
-  alreadyContainer: {
-    marginTop: 32,
-    width: "100%",
-    justifyContent: "space-evenly",
-    flexDirection: "row",
-  },
-  alreadyText: {
-    fontFamily: "Poppins-Regular",
-    textAlign: "center",
-    color: "#fff",
-  },
-  login: {
-    fontFamily: "Poppins-SemiBold",
-    color: "#5603AD",
   },
   error: {
     fontFamily: "Poppins-Regular",

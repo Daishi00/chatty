@@ -2,11 +2,13 @@ import React from "react"
 import { Text, View, StyleSheet } from "react-native"
 import { useQuery } from "@apollo/client"
 import { GET_ROOMS_QUERY } from "../graphql/Queries"
+
 import { Room } from "../components/Room"
+import { Loading } from "../components/Loading"
 
 export const RoomsList = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_ROOMS_QUERY)
-  if (loading) return <Text>"Loading..."</Text>
+  if (loading) return <Loading />
   if (error) return <Text>`Error! ${error.message}`</Text>
 
   const rooms = data.usersRooms.rooms

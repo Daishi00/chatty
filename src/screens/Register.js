@@ -1,8 +1,11 @@
 import React from "react"
-import { View, Text, TextInput, StyleSheet } from "react-native"
+import { View, Text, TextInput, StyleSheet, Linking } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { Button } from "../components/Button"
+import { AuthSwitch } from "../components/AuthSwitch"
+
 import * as yup from "yup"
 
 const schema = yup.object().shape({
@@ -119,26 +122,35 @@ export const Register = ({ navigation }) => {
           name="passwordConfirm"
         />
         <Text style={styles.error}>{errors.passwordConfirm?.message}</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Rooms")}
-          // onPress={handleSubmit(onSubmit)}
-        >
-          <Text style={styles.buttonText}>Sign Up</Text>
-        </TouchableOpacity>
+        <Button onPress={() => navigation.navigate("Rooms")}>Sign up</Button>
       </View>
       <View style={styles.termsContainer}>
         <Text style={styles.termsText}>
-          By signing up you agree with{"\n"} Terms and Conditions and Privacy
-          Policy
+          By signing up you agree with{"\n"}
+          <Text
+            style={styles.link}
+            onPress={() =>
+              Linking.openURL("https://policies.google.com/terms?hl=en-US")
+            }
+          >
+            Terms and Conditions
+          </Text>{" "}
+          and{" "}
+          <Text
+            style={styles.link}
+            onPress={() =>
+              Linking.openURL("https://policies.google.com/terms?hl=en-US")
+            }
+          >
+            Privacy Policy
+          </Text>
         </Text>
       </View>
-      <View style={styles.alreadyContainer}>
-        <Text style={styles.alreadyText}>Already have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={styles.login}>Log In</Text>
-        </TouchableOpacity>
-      </View>
+      <AuthSwitch
+        text="Already have an account?"
+        buttonText="Log In"
+        onPress={() => navigation.navigate("Login")}
+      />
     </View>
   )
 }
@@ -164,19 +176,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontFamily: "Poppins-Regular",
   },
-  button: {
-    width: "100%",
-    height: 50,
-    marginTop: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#5603AD",
-    borderRadius: 10,
-  },
-  buttonText: {
-    fontFamily: "Poppins-SemiBold",
-    color: "#fff",
-  },
   termsContainer: {
     marginTop: 16,
   },
@@ -185,26 +184,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#fff",
   },
-  alreadyContainer: {
-    marginTop: 16,
-    width: "100%",
-    justifyContent: "space-evenly",
-    flexDirection: "row",
-    marginBottom: 20,
-  },
-  alreadyText: {
-    fontFamily: "Poppins-Regular",
-    textAlign: "center",
-    color: "#fff",
-  },
-  login: {
-    fontFamily: "Poppins-SemiBold",
-    color: "#5603AD",
-  },
   error: {
     fontFamily: "Poppins-Regular",
     textAlign: "right",
     color: "#FF445A",
     fontSize: 12,
+  },
+  link: {
+    color: "#4DBDFC",
+    textDecorationLine: "underline",
   },
 })
